@@ -167,7 +167,7 @@ if __name__ == "__main__":
 
 	b = bcolors()
 	
-	delay_print(b.OKGREEN + "[drama - XssBypass]\n\nuse https://github.com/tbrizon/drama_scrapper.git to create some data if you want\nurl to request =  \n", 0.01)
+	delay_print(b.OKGREEN + "[drama - XssBypass]\n\nuse https://github.com/tbrizon/drama_scrapper.git to collect some data\n\nurl to request =  \n", 0.01)
 	json = {}
 	v_paths = []
 	x = 0
