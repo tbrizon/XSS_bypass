@@ -6,11 +6,11 @@ You can use it as a program or a class.
 
 use the following command to launch it as a program and then follow the input interaction
 
-![](screenshots/scr1.png)
+![](screenshots/scr0.png)
 
 here is an example.
 We are gonna use the rootme exercice called XSS.stored.filter.bypass
-![](screenshots/scr2.png)
+![](screenshots/scr1.png)
 
 after choosing between a post or a get request, you have to create your json as the folowing example.
 the 'target' value is gonna be the value we want to attack.
