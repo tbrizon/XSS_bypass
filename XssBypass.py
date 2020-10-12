@@ -64,7 +64,9 @@ class XssBypass():
 		except ValueError:
 			print("create_data methods can only contain list, tupe and str arguments")
 
-	#make a request POST with the json post_request data, then return the response of the serveur
+	"""
+	make a request POST with the json post_request data, then return the response of the serveur
+	"""
 	def request(self,type_request, **json_request):
 		if self.json == None:
 			self.json = json_request
@@ -108,17 +110,26 @@ class XssBypass():
 			if display == 'yes':
 					print(c.FAIL + json_request[target] + c.ENDC)
 			return ('fail')
-		
 
+	"""
+	store the results into a results directory
+	"""
 	def store(self):
+		regex = r"[^\\\/]+(?=\.[\w]+$)|[^\\\/]+$"
+		if not os.path.isdir('./results'):
+			print(bcolors.OKGREEN + "creating a data repository to collect vectors\n\n" + bcolors.ENDC)
+			os.mkdir('results')
 		for key, value in self.results.items():
-			fd = open(key + '_results.txt', 'w+')
+			match = re.search(regex, key)
+			fd = open("./results/" + match.group(0) + '_results.txt', 'w+')
 			txt = "-----------SUCCESS----------- \n\n" + '\n'.join(value['success']) + "\n\n-----------FAIL-----------\n\n" + '\n'.join(value['fail'])
 			fd.write(txt)
 			fd.close()
 
-
-
+	"""
+	main function, it roles is to attack the value of the url by injecting vectors and check 
+	if vectors are bypassed or not
+	"""
 	def attack(self, data,type_request,premade_json = None, injection_line = -1, display='no', **json_request): 
 		url = self.url
 		cmpt = -1
@@ -149,12 +160,11 @@ class XssBypass():
 			self.results[srcs] = dict(success = success_vectors,fail = fail_vectors)
 			success_vectors = []
 			fail_vectors = []
-
 		return (self.results)
 	
 
 if __name__ == "__main__":	
-	
+
 	b = bcolors()
 	
 	delay_print(b.OKGREEN + "[drama - XssBypass]\n\nuse https://github.com/tbrizon/drama_scrapper.git to create some data if you want\nurl to request =  \n", 0.01)
@@ -210,13 +220,11 @@ if __name__ == "__main__":
 	bypass.store()
 	"""
 	param = {
-		'nickname' : 'target',
-		'color' : '"/*',
-		'p' : 'game'
+		'title' : 'ok',
+		'message' : 'target'
 	}
 
-	a = XssBypass('http://challenge01.root-me.org/web-client/ch24/')
-	a.attack(["./test.txt"], 'get',display='no',premade_json=param, injection_line=70)
+	a = XssBypass('http://challenge01.root-me.org/web-client/ch21/index.php')
+	a.attack(["./data/event_html.txt"], 'post',display='no',premade_json=param, injection_line=31)
+	a.store()
 	"""
-	
-	
