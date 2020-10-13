@@ -117,8 +117,7 @@ class XssBypass():
 	def store(self):
 		regex = r"[^\\\/]+(?=\.[\w]+$)|[^\\\/]+$"
 		if not os.path.isdir('./results'):
-			print(bcolors.OKGREEN + "creating a data repository to collect vectors\n\n" + bcolors.ENDC)
-			os.mkdir('results')
+			os.mkdir('xss_results')
 		for key, value in self.results.items():
 			match = re.search(regex, key)
 			fd = open("./results/" + match.group(0) + '_results.txt', 'w+')
@@ -216,7 +215,7 @@ if __name__ == "__main__":
 		bypass.attack(v_paths,type_request, display=display,injection_line=injection_line, premade_json=json)
 	else:
 		delay_print(b.HEADER + "\n\nseeya", 0.03)
-	delay_print(b.HEADER + "\n\nparsing with the .store method ", 0.04)
+	delay_print(b.HEADER + "\n\nparsing results with the .store method on a xss_results directory", 0.02)
 	bypass.store()
 	"""
 	param = {
