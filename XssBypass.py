@@ -116,11 +116,11 @@ class XssBypass():
 	"""
 	def store(self):
 		regex = r"[^\\\/]+(?=\.[\w]+$)|[^\\\/]+$"
-		if not os.path.isdir('./results'):
+		if not os.path.isdir('./xss_results'):
 			os.mkdir('xss_results')
 		for key, value in self.results.items():
 			match = re.search(regex, key)
-			fd = open("./results/" + match.group(0) + '_results.txt', 'w+')
+			fd = open("./xss_results/" + match.group(0) + '_results.txt', 'w+')
 			txt = "-----------SUCCESS----------- \n\n" + '\n'.join(value['success']) + "\n\n-----------FAIL-----------\n\n" + '\n'.join(value['fail'])
 			fd.write(txt)
 			fd.close()
